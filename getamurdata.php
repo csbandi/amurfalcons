@@ -7,7 +7,7 @@
 # Hence saving time and money.
 #echo phpinfo(); 
 #Test tracking URL - "http://satellitetracking.eu/inds/getmarkers/143,145/1414260326";
-#Test google URL - "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDjTQw3WL9SR57GFl5HMZmWZN3kIG5mt6k
+#Test google URL - "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=<YOUR API KEY>
 
 #Initialising variables
 $amursite_url = "http://satellitetracking.eu/inds/getmarkers/143,145/";
