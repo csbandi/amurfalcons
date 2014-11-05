@@ -16,7 +16,7 @@ $amur_XML = 'amurdata.xml';
 $api_key = "&key="."<your google api key>"; #ATTENTION: replace with your API key
 $goglApi_url= "https://maps.googleapis.com/maps/api/geocode/xml?latlng=";
 #End of variable initialisation
-
+echo("<br/> Finding satellite tracked amur falcons current location....");
 
 # Step 1: Fetch data from the satellite tracking website for the two amur falcons being tracked
 FetchData($amursite_url,$amur_XML, false);
@@ -29,8 +29,9 @@ $falcon1['longitude'] = trim($x->marker["0"]["lng"]);
 $falcon2['Name'] = trim($x->marker["1"]["ind_name"]);
 $falcon2['latitude'] = trim($x->marker["1"]["lat"]);
 $falcon2['longitude'] =trim($x->marker["1"]["lng"]);
-echo("\n lat, long of falcon -". $falcon1['Name']. " are :". $falcon1['latitude'] . ", ". $falcon1['longitude']);
-echo("\n lat, long of falcon -". $falcon2['Name']. " are :". $falcon2['latitude'] . ", ". $falcon2['longitude']);
+echo("<br/> Latitude, Longitude of falcon -". $falcon1['Name']. " are :". $falcon1['latitude'] . ", ". $falcon1['longitude']);
+echo("<br/> Latitude, Longitude of falcon -". $falcon2['Name']. " are :". $falcon2['latitude'] . ", ". $falcon2['longitude']);
+
 #Finished finding falcons current location
 
 #Step 3: Start of google reverse geocoding api calls to retrieve the name of the location of the falcons 
@@ -52,8 +53,9 @@ $gxml2 = simplexml_load_file($falcon2['Name']);
 $falcon1['Address'] = $gxml1->result[0]->formatted_address;
 $falcon2['Address'] = $gxml2->result[0]->formatted_address;
 
-echo("\n Location  of falcon -". $falcon1['Name']. " is :". $falcon1['Address']);
-echo("\n Location of falcon -". $falcon2['Name']. " is :". $falcon2['Address']);
+echo("<br/> <br/> Location  of falcon -". $falcon1['Name']. " is :". $falcon1['Address']);
+echo("<br/> Location of falcon -". $falcon2['Name']. " is :". $falcon2['Address']);
+echo("<br/> <br/> Thank you for visiting my site. For more details, contact me : cs.bandi@gmail.com");
 
 #End of main code
 
@@ -77,9 +79,9 @@ function FetchData($siteurl,$targetXML, $isHTTPS)
 	$fp = fopen($targetXML, 'w');
 	fwrite($fp, trim($resp));#TODO: Add response check and publish error 
 	fclose($fp);
-	if(!curl_errno($siteurl))
+	if(!curl_errno($hcurl))
 	{ 
-		echo curl_error($siteurl);
+		echo curl_error($hcurl);
 	}
 	curl_close ($hcurl);
 	#validate http return code and return error if failed to get response
